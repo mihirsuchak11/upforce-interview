@@ -1,0 +1,28 @@
+.button {
+    background-color: #024457;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    min-width: 30px;
+    text-align: center;
+    cursor: pointer;
+    /* text-decoration: none; */
+    display: inline-block;
+    /* font-size: 16px; */
+    transition: 0.3s all;
+}
+
+button:hover {
+    background-color: #167F92;
+}
+
+button:focus {
+    outline: none;
+}
+
+button:disabled {
+    background: #dddddd;
+    cursor: not-allowed;
+    pointer-events: none;
+}
