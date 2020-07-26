@@ -4,5 +4,9 @@ input {
   border-radius: 10px;
   border: 1px solid var(--secondary-default);
   box-shadow: none;
-  background: var(--secondary-light);
+  background: var(--secondary-default);
+}
+
+input:focus {
+  outline: none;
 }

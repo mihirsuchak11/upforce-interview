@@ -2,9 +2,10 @@ import React, { useRef, useMemo, useState, useEffect } from "react";
 import axios from "axios";
 
 import TableUi from "./TableUi";
-
+// Chip design for generic
+// Note: we can put this in a separate folder too.
 const Chip = ({ item, value, index }) => <span className="column-item"><span className="column-title">{Object.keys(item)[index].toUpperCase()}: </span><span>{value}</span></span>
-
+// Table columns 
 function Table() {
     const columns = useMemo(
         () => [
@@ -90,20 +91,25 @@ function Table() {
 
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [isError, setIsError] = useState(false);
 
+    // API call for shipments data
     useEffect(() => {
         setLoading(true)
         axios("http://localhost:3001/shipments")
             .then(res => {
                 setData(res.data);
-                setLoading(false)
+                setLoading(false);
+                setIsError(false);
             }).catch(error => {
-                console.log(error)
+                setLoading(false);
+                setIsError(true);
             })
     }, [])
 
-    const skipResetRef = useRef(false)
+    const skipResetRef = useRef(false);
 
+    // Updating data for pagination
     const updateMyData = (rowIndex, columnId, value) => {
         skipResetRef.current = true
         setData(old =>
@@ -123,17 +129,26 @@ function Table() {
         skipResetRef.current = false
     }, [data])
 
+    // Rendering table with loading and error text
+    const renderTable = () => {
+        // this is temporary design for loading and error
+        if(loading) {
+            return <p>Loading...</p>
+        } else if(isError && !loading) {
+            return <p>Something went wrong, please refresh the page.</p>
+        } else {
+            return <TableUi
+                columns={columns}
+                data={data}
+                updateMyData={updateMyData}
+                skipReset={skipResetRef.current}
+            />
+        }
+    }
+
     return (
         <div className="table-wrapper">
-            {/* Here we can add ui for loading */}
-            {loading ? <p>Loading...</p> :
-                <TableUi
-                    columns={columns}
-                    data={data}
-                    updateMyData={updateMyData}
-                    skipReset={skipResetRef.current}
-                />
-            }
+            {renderTable()}
         </div>
     )
 }
