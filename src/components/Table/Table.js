@@ -84,11 +84,6 @@ function Table() {
         skipResetRef.current = false
     }, [data])
 
-    const resetData = () => {
-        skipResetRef.current = true
-        setData(originalData)
-    }
-
     return (
         <div className="table-wrapper">
             <TableUi
