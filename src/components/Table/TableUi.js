@@ -7,6 +7,8 @@ import NoDataFound from '../NoDataFound/NoDataFound';
 
 import './Table.css';
 
+const pageSizeOptions = [5, 10, 15, 20];
+
 export default function Table({ columns, data, skipReset, updateMyData }) {
 
     // Used the state and functions returned from useTable to build UI 
@@ -28,14 +30,15 @@ export default function Table({ columns, data, skipReset, updateMyData }) {
         state: {
             pageIndex,
             pageSize,
-            globalFilter
+            globalFilter,
         },
     } = useTable(
         {
             columns,
             data,
             autoResetPage: !skipReset,
-            updateMyData
+            updateMyData,
+            initialState: { pageSize: pageSizeOptions[0] },
         },
         useFilters,
         useGlobalFilter,
@@ -58,6 +61,7 @@ export default function Table({ columns, data, skipReset, updateMyData }) {
                     pageOptions={pageOptions}
                     pageSize={pageSize}
                     setPageSize={setPageSize}
+                    pageSizeOptions={pageSizeOptions}
                 />
                 <FilterInput
                     value={globalFilter || ""}
@@ -71,6 +75,7 @@ export default function Table({ columns, data, skipReset, updateMyData }) {
                             {headerGroup.headers.map(column => (
                                 <th
                                     {...column.getHeaderProps(column.getSortByToggleProps())}
+                                    style={{ minWidth: column.minWidth }}
                                     className={
                                         column.isSorted
                                             ? column.isSortedDesc

@@ -9,6 +9,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+:root {
+  --primary-dark: #024457;
+  --primary-light: rgba(23, 125, 146, 0.08);
+  --primary-default: #167F92;
+  --secondary-dark: #dcdcdc;
+  --secondary-light: rgba(245, 245, 245, 0.7);
+  --secondary-default: #f7f7f7;
+}
+
 .list-style-none {
   list-style: none;
   padding: 0;
@@ -17,5 +26,5 @@ code {
 
 h1 {
   text-align: center;
-  color: #167F92;
+  color: var(--primary-dark);
 }

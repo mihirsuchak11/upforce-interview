@@ -16,5 +16,5 @@ select {
 }
 
 .current-page-number button {
-    background-color: #167F92;
+    background-color: var(--primary-default);
 }

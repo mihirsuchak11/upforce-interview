@@ -3,7 +3,7 @@ import Button from '../Button/Button';
 
 import './Pagination.css';
 
-export default function Pagination({ gotoPage, previousPage, nextPage, pageCount, canPreviousPage, canNextPage, pageIndex, pageOptions, pageSize, setPageSize }) {
+export default function Pagination({ gotoPage, previousPage, nextPage, pageCount, canPreviousPage, canNextPage, pageIndex, pageOptions, pageSize, setPageSize, pageSizeOptions }) {
     return (
         <div className="pagination">
             <select
@@ -12,7 +12,7 @@ export default function Pagination({ gotoPage, previousPage, nextPage, pageCount
                     setPageSize(Number(e.target.value))
                 }}
             >
-                {[5, 10, 15, 20, 25].map(pageSize => (
+                {pageSizeOptions.map(pageSize => (
                     <option key={pageSize} value={pageSize}>
                         Show {pageSize}
                     </option>

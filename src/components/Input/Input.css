@@ -2,7 +2,7 @@ input {
   padding: 10px;
   font-size: 14px;
   border-radius: 10px;
-  border: 1px solid #dcdcdc;
+  border: 1px solid var(--secondary-default);
   box-shadow: none;
-  background: #f7f7f7;
+  background: var(--secondary-light);
 }
